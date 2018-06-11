@@ -4,9 +4,6 @@ const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
-console.info(path.resolve(__dirname, './build'))
-
-
 module.exports = {
     cache: true,
 
@@ -17,13 +14,7 @@ module.exports = {
         filename: './build/[name].[contenthash:4].js'
     },
 
-    plugins: [
-        new HtmlWebpackPlugin({
-            hash    : true,
-            title   : 'Diply - Connecting users with the content they love.',
-            template: 'index.html'
-        })
-    ],
+    plugins: [ new HtmlWebpackPlugin({ template:'index.html', title: 'Diply - Connecting Users..' }) ],
 
     module: {
         rules: [

@@ -12,16 +12,13 @@ const TemplateMap = {
                 `<div class="item">
                                 ${data.Type === "Header" ? this.Header(data, titleTarget, titleYPos, method) : ''}
                                 ${data.Type === "VideoEmbed" ? this.VideoEmbed(data) : ''}
+                                ${data.Type === "TextBlock" ? this.TextBlock(data) : ''}
+                                ${data.Type === "Image" ? this.Image(data) : ''}
                 </div>`
 
-                /* 
-                                 ${data.Type === "TextBlock" ? this.TextBlock(data) : ''}
-                                 ${data.Type === "Image" ? this.Image(data) : ''}
-                                 */
 
             return template;
         }
-
     },
 
 
@@ -61,16 +58,16 @@ const TemplateMap = {
 
 
     VideoEmbed: function (data) {
-        let ampScript  = JSON.parse(data.Script);
+        // let ampScript  = JSON.parse(data.Script);
             // embedScript = ampScript.replace('\n', '').replace ('\"', '"');
 
-            console.info(embedScript);
+            // console.info(embedScript);
 
 
 
-        let template = `${embedScript}` 
+        // let template = `${embedScript}` 
 
-        return template
+        // return template
     }
 
 

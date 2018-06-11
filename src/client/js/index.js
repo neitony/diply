@@ -1,7 +1,7 @@
 require('../scss/main.scss');
 
 
-import MediaItem from './modules/article';
+import MediaItem from './modules/media';
 // import Loader from './modules/preloader'
 
 
