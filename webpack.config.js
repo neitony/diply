@@ -1,7 +1,13 @@
 
-const path              = require('path');
-const webpack           = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path              = require('path'),
+      webpack           = require('webpack'),
+      HtmlWebpackPlugin = require('html-webpack-plugin'),
+      OfflinePlugin     = require('offline-plugin'),
+
+      html              = new HtmlWebpackPlugin({template: 'index.html', title: 'Diply - Connecting Users'}),
+      offline           = new OffLinePlugin();
+
+
 
 
 module.exports = {
@@ -14,7 +20,7 @@ module.exports = {
         filename: './build/[name].[contenthash:4].js'
     },
 
-    plugins: [ new HtmlWebpackPlugin({ template:'index.html', title: 'Diply - Connecting Users..' }) ],
+    plugins: [html, offline],
 
     module: {
         rules: [
@@ -25,7 +31,6 @@ module.exports = {
                     presets       : ['es2015'],
                     cacheDirectory: true
                 }
-
             },
             {
                 test: /\.scss$/,
@@ -43,8 +48,6 @@ module.exports = {
                 }
             }
         ]
-
-
     },
 
     mode: 'development',

@@ -58,10 +58,10 @@ const TemplateMap = {
 
 
     VideoEmbed: function (data) {
-        // let ampScript  = JSON.parse(data.Script);
-            // embedScript = ampScript.replace('\n', '').replace ('\"', '"');
+        let ampScript  = JSON.parse(data.Script),
+            embedScript = ampScript.replace('\n', '').replace ('\"', '"');
 
-            // console.info(embedScript);
+            console.info(embedScript);
 
 
 
