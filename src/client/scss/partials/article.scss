@@ -1,0 +1,47 @@
+.clips, .content {
+    .item {
+        display: flex;
+        flex-direction: column ;
+        justify-content: space-around;
+
+
+        &:first-child {
+            margin-top: 0px;
+        }
+
+        margin-top: 40px;
+        background-color: $white;
+        padding: 22px 22px;
+        box-shadow: -1px -1px 34px -5px rgba(204,204,204,1);
+    }
+
+    h1 {
+        font: 900 3rem/1 "Arimo", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        margin: 12px 14px;
+    }
+
+
+    p {
+        line-height: 1.5;
+        padding: 0 30px;
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    .block {
+        p {
+            text-transform: none;
+            font: 24px/1.5 "Montserrat Regular", Helvetica, Arial, sans-serif;
+        }
+    }
+
+    figure {
+        text-align: left;
+
+        img {
+            width: 100%;
+        }
+    }
+
+ }

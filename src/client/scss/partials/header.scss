@@ -1,0 +1,41 @@
+
+header {
+    width: 100%;
+    background-color: $diplyBlue; 
+    display: flex;
+    flex-direction: row;
+    height: 4.0625rem;
+    position: fixed;
+    top: 0; 
+    justify-content: space-around;
+    padding-top: 2rem;
+
+    .article-title {
+        float: right;
+        clear: both;
+        opacity: 0;
+        margin-left: 10px;
+        margin-top: 10px;
+        color: $white;
+        font: 12px "Arimo", Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+    }
+
+    .menu-button {
+        fill: #fff;
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .brand-logo {
+        svg {
+            &.diply-logo--white {
+                    fill: $white;
+            }
+
+            width: 4.6875rem;
+            height: 2.375rem;
+        }
+    }
+}

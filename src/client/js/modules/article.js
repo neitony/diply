@@ -1,76 +1,24 @@
-import Feed from '../config/feed';
+import {Feed, TemplateMap} from '../config/store';
 
 
 class MediaItem {
     constructor(props) {
         let { type, target, titleTarget, titleYPos } = props;
 
-        this.type           = type;
-        this.target         = target;
-        this.titleTarget    = titleTarget;
-        this.titleYPos      = titleYPos;
-        this.feedRepository = Feed;
+        this.type            = type;
+        this.target          = target;
+        this.titleTarget     = titleTarget;
+        this.titleYPos       = titleYPos;
+        this.feedRepository  = Feed;
+        this.templateMapping = TemplateMap
     }
 
 
 
     templatize(data) {
         let DOMContent = '';
+            DOMContent = this.templateMapping['Content'](data, this.titleTarget, this.titleYPos, () =>  this.showHeaderTitle);
 
-
-        const templateMapping = {
-            article: {
-                Content: function (data, titleTarget, titleYPos) {
-
-                    if (data.Type !== "Ad Placeholder") {
-                        let template = 
-                            `<div class="item">
-                                ${data.Type === "Header" ? this.Header(data, titleTarget, titleYPos) : ''}
-                                ${data.Type === "TextBlock" ? this.TextBlock(data) : ''}
-                                ${data.Type === "Image" ? this.Image(data) : ''}
-                            </div>`
-
-                        return template;
-                    }
-
-                },
-
-                Image: function (data) {
-                    let template = 
-                        `<h2>${data.Title}</h2>
-                        <figure>
-                            <img src = "${data.Url}" />
-                        </figure>`
-
-                    return template
-                },
-
-                Header: (data, titleTarget, titleYPos) =>  {
-                    this.showHeaderTitle(titleTarget, data.Title, titleYPos);
-
-                    let template = 
-                        `<h1>${data.Title}</h1>
-                        <figure>
-                            <img src = "${data.Url}" />
-                        </figure>`
-
-                    return template
-                },
-
-
-                TextBlock: function (data) {
-                    let template = 
-                        `<div class="block">
-                            <p>${data.Content}</p>
-                        </div>`
-
-                    return template
-                }
-            }
-        },
-
-            type       = templateMapping[this.type]
-            DOMContent = type['Content'](data, this.titleTarget, this.titleYPos);
 
         return DOMContent;
     }
@@ -88,7 +36,7 @@ class MediaItem {
 
     showHeaderTitle(titleTarget, content, yPos) {
         let headerTitle           = document.querySelector(titleTarget);
-            headerTitle.innerHTML = content; 
+            headerTitle.innerHTML = content;
 
         this.scrollIntoView(yPos, () => headerTitle.style.opacity = (window.scrollY > yPos ?  1 : 0 ));
     }
@@ -97,7 +45,7 @@ class MediaItem {
 
     scrollIntoView(yPos, method) {
         window.addEventListener('scroll', () => {
-                method(yPos)
+            method(yPos)
         })
     }
 
