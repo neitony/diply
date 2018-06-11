@@ -1,8 +1,10 @@
-const path                 = require('path');
-const webpack              = require('webpack');
-const HtmlWebpackPlugin    = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin   = require('clean-webpack-plugin');
+
+const path              = require('path');
+const webpack           = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+
+console.info(path.resolve(__dirname, './build'))
 
 
 module.exports = {
@@ -12,26 +14,14 @@ module.exports = {
 
     output: {
         path    : path.resolve(__dirname, './build'),
-        filename: '[name].[contenthash:4].js'
+        filename: './build/[name].[contenthash:4].js'
     },
 
     plugins: [
-
-        new CleanWebpackPlugin(['build/*.*'], {
-            root   : __dirname,
-            verbose: true,
-            dry    : false,
-            watch  : true
-        }),
-
         new HtmlWebpackPlugin({
-            title   : '',
+            hash    : true,
+            title   : 'Diply - Connecting users with the content they love.',
             template: 'index.html'
-        }),
-
-        new MiniCssExtractPlugin({
-            "filename"     : "[name].css",
-            "chunkFileName": "[id].css"
         })
     ],
 
@@ -49,13 +39,24 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use : ["style-loader", "css-loader", "sass-loader"]
+            },
+            {
+                test: /\.(woff|woff2)?$/,
+                use : {
+                    loader : "url-loader",
+                    options: {
+                        limit   : 50000,
+                        mimeType: "application/font-woff",
+                        name    : "./font/[name].[ext]"
+                    }
+                }
             }
         ]
 
 
     },
 
-    mode: 'production',
+    mode: 'development',
 
     devtool: 'source-map'
 }

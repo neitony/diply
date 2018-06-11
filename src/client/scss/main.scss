@@ -1,9 +1,20 @@
-@import './partials/loader.scss';
-@import './partials/vide
-.scss';
-@import './partials/loader.scss';
+@import './variables/colors.scss';
+
+@import './partials/font.scss';
+@import './partials/normalize.scss';
+@import './partials/header.scss';
+@import './partials/preloader.scss';
+@import './partials/video.scss';
+@import './partials/article.scss';
 
 
 body {
-  border: 1px solid red;
-}npm
+  font-family: "Arimo";
+
+  article {
+      width: 100%;
+      max-width: 720px;
+      margin: 100px auto;
+  }
+
+}
