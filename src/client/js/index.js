@@ -2,7 +2,85 @@ require('../scss/main.scss');
 
 import MediaItem from './modules/media';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
+let elapse       = 0,                                                    runner;
+let clearContent = (target) => document.querySelector(target).innerHTML = "";
+
+
+const menuMap = {
+    items: ['video', 'article'],
+    video: () => {
+        clearContent('.content');
+
+        new MediaItem({
+            type       : 'video',
+            target     : '.clips',
+            titleTarget: '.article-title',
+            titleYPos  : 176
+        }).render({ player: 'video' })
+
+    },
+
+
+
+    article: () => {
+        clearContent('.clips')
+
+        new MediaItem({
+            type       : 'article',
+            target     : '.content',
+            titleTarget: '.article-title',
+            titleYPos  : 176
+        }).render()
+
+    }
+}
+
+
+
+
+const progress = (percent) => {
+    let bar             = document.querySelector('.loader');
+        bar.style.width = `${percent}%`;
+}
+
+
+
+
+const timer = () => {
+    let bar           = document.querySelector('.loader'),
+        loaderContent = document.querySelector('.loader-content');
+
+
+    if (elapse > 100) {
+        bar.style.color = "#fff";
+
+        if (elapse >= 107) {
+            clearInterval(runner);
+
+            bar.style.display = "none";
+            loaderContent.style.opacity = "1";
+            menuMap['article']();
+        }
+    }
+    else {
+        progress(elapse);
+    }
+
+    elapse++;
+}
+
+
+
+runner = setInterval(() => { timer() }, 50);
+
+document.querySelector('.video').onclick   = () => menuMap['video']();
+document.querySelector('.article').onclick = () => menuMap['article']();
+
+
+
 // import Loader from './modules/preloader'
+/*
 
 OfflinePluginRuntime.install({
     onUpdateReady: () => {
@@ -17,6 +95,9 @@ OfflinePluginRuntime.install({
 
     onUpdated: () => window.reload
 });
+/*
+
+
 
 
 /*
@@ -28,14 +109,15 @@ const article = new MediaItem({
 });
  */
 
-
+/*
 
 const video = new MediaItem({
-    type  : 'video',
-    target: '.clips',
+    type       : 'video',
+    target     : '.clips',
     titleTarget: '.article-title',
     titleYPos  : 176
 })
+*/
 
 
 // const loader = new Loader();
@@ -44,4 +126,4 @@ const video = new MediaItem({
 
 // article.render();
 
-video.render();
+// video.render({ player: 'video' });

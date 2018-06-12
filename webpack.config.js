@@ -22,7 +22,7 @@ module.exports = {
         filename: './build/[name].[contenthash:4].js'
     },
 
-    plugins: [html, offline],
+    plugins: [html],
 
     module: {
         rules: [
