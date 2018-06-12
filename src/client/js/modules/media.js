@@ -94,19 +94,6 @@ class MediaItem {
               }
 
               httpRequest.send('');
-
-
-        
-
-
-
-        // fetch(url, props)
-            // .then((response) => {
-                //  this.getContentProgress(response.body.getReader())
-            //  })
-            //  .then(response => console.info(response))
-            // .then(response => response.json())
-            // .then(data => this.parse(data))
     }
 
 
