@@ -3,6 +3,23 @@ require('../scss/main.scss');
 import MediaItem from './modules/media';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
+
+OfflinePluginRuntime.install({
+    onUpdateReady: () => {
+        OfflinePluginRuntime.applyUpdate();
+
+        caches.keys().then( (names) => {
+            for (let name of names) {
+                caches.delete(name);
+            }
+        });
+    }, 
+
+    onUpdated: () => window.reload
+});
+
+
+
 let elapse       = 0,                                                    runner;
 let clearContent = (target) => document.querySelector(target).innerHTML = "";
 
@@ -19,6 +36,8 @@ const menuMap = {
             titleYPos  : 176
         }).render({ player: 'video' })
 
+        document.body.className = 'video';
+
     },
 
 
@@ -32,6 +51,8 @@ const menuMap = {
             titleTarget: '.article-title',
             titleYPos  : 176
         }).render()
+
+        document.body.className = 'article';
 
     }
 }
@@ -72,58 +93,15 @@ const timer = () => {
 
 
 
-runner = setInterval(() => { timer() }, 50);
-
+runner = setInterval(() => { timer() }, 25);
 document.querySelector('.video').onclick   = () => menuMap['video']();
 document.querySelector('.article').onclick = () => menuMap['article']();
 
 
 
-// import Loader from './modules/preloader'
-/*
-
-OfflinePluginRuntime.install({
-    onUpdateReady: () => {
-        OfflinePluginRuntime.applyUpdate();
-
-        caches.keys().then( (names) => {
-            for (let name of names) {
-                caches.delete(name);
-            }
-        });
-    }, 
-
-    onUpdated: () => window.reload
-});
-/*
 
 
 
 
-/*
-const article = new MediaItem({
-     type       : 'article',
-     target     : '.content',
-     titleTarget: '.article-title',
-     titleYPos  : 176
-});
- */
-
-/*
-
-const video = new MediaItem({
-    type       : 'video',
-    target     : '.clips',
-    titleTarget: '.article-title',
-    titleYPos  : 176
-})
-*/
 
 
-// const loader = new Loader();
-
-// loader.shout();
-
-// article.render();
-
-// video.render({ player: 'video' });

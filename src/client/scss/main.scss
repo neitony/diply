@@ -9,6 +9,18 @@
 
 
 body {
+  &.article {
+    .article {
+        border-bottom: 1px solid $white;
+    }
+  }
+
+  &.video {
+    .video {
+        border-bottom: 1px solid $white;
+    }
+  }
+
   font-family: "Arimo";
 
   section {
