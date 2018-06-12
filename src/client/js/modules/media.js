@@ -1,5 +1,4 @@
 import { Feed, TemplateMap } from '../config/store';
-import { POINT_CONVERSION_UNCOMPRESSED } from 'constants';
 
 
 class MediaItem {
@@ -87,7 +86,6 @@ class MediaItem {
               httpRequest.open ("GET", url);
 
               httpRequest.onprogress = (e) => {
-                  console.info(e.lengthComputable);
                 if(e.lengthComputable){ console.info(e.loaded + "/" + e.total)}
               }
 
