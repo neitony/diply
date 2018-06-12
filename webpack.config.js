@@ -5,7 +5,9 @@ const path              = require('path'),
       OfflinePlugin     = require('offline-plugin'),
 
       html              = new HtmlWebpackPlugin({template: 'index.html', title: 'Diply - Connecting Users'}),
-      offline           = new OfflinePlugin();
+      offline           = new OfflinePlugin({
+            ServiceWorker: { events: true }
+      });
 
 
 

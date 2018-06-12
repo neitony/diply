@@ -57,17 +57,18 @@ const TemplateMap = {
     },
 
 
-    VideoEmbed: function (data) {
-        let ampScript  = JSON.parse(data.Script),
-            embedScript = ampScript.replace('\n', '').replace ('\"', '"');
+    VideoEmbed: function (data, method) {
+        method && method()
+        let video    = data.Properties.mp4_url,
+            poster   = data.ThumbUrl,
+            template = 
+             `<div class="video-content">
+                <video class="player" controls>
+                    <source src= "${video}">
+                </video>
+             </div>`
 
-            console.info(embedScript);
-
-
-
-        // let template = `${embedScript}` 
-
-        // return template
+        return template
     }
 
 

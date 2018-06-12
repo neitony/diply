@@ -17,7 +17,8 @@ class MediaItem {
 
     templatize(data) {
         let DOMContent = '';
-            DOMContent = this.templateMapping['Content'](data, this.titleTarget, this.titleYPos, () =>  this.showHeaderTitle);
+            DOMContent = this.templateMapping['Content'](data, this.titleTarget, this.titleYPos,
+                 () => this.showHeaderTitle(data, this.titleTarget, this.titleYPos )); 
 
 
         return DOMContent;
@@ -34,9 +35,9 @@ class MediaItem {
 
 
 
-    showHeaderTitle(titleTarget, content, yPos) {
+    showHeaderTitle(content, titleTarget, yPos ) {
         let headerTitle           = document.querySelector(titleTarget);
-            headerTitle.innerHTML = content;
+            headerTitle.innerHTML = content.Title;
 
         this.scrollIntoView(yPos, () => headerTitle.style.opacity = (window.scrollY > yPos ?  1 : 0 ));
     }
@@ -45,9 +46,30 @@ class MediaItem {
 
     scrollIntoView(yPos, method) {
         window.addEventListener('scroll', () => {
-            method(yPos)
+            method(yPos);
         })
     }
+
+
+    playVideo(target) {
+            
+            const targetOffset = target.offsetTop; 
+
+            (targetOffset > 20) && this.player.play();
+            
+
+    }
+
+
+
+    player(target) {
+        const controls = {
+            play: function() { this.play() },  
+            pause: function() { this.pause() },  
+        }
+        return controls
+    }
+
 
 
 

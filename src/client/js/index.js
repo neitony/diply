@@ -1,8 +1,22 @@
 require('../scss/main.scss');
 
-
 import MediaItem from './modules/media';
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 // import Loader from './modules/preloader'
+
+OfflinePluginRuntime.install({
+    onUpdateReady: () => {
+        OfflinePluginRuntime.applyUpdate();
+
+        caches.keys().then( (names) => {
+            for (let name of names) {
+                caches.delete(name);
+            }
+        });
+    }, 
+
+    onUpdated: () => window.reload
+});
 
 
 /*
@@ -12,7 +26,9 @@ const article = new MediaItem({
      titleTarget: '.article-title',
      titleYPos  : 176
 });
-*/
+ */
+
+
 
 const video = new MediaItem({
     type  : 'video',
