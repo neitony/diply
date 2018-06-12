@@ -24,6 +24,7 @@ let elapse       = 0,                                                    runner;
 let clearContent = (target) => document.querySelector(target).innerHTML = "";
 
 
+
 const menuMap = {
     items: ['video', 'article'],
     video: () => {
@@ -39,7 +40,6 @@ const menuMap = {
         document.body.className = 'video';
 
     },
-
 
 
     article: () => {
