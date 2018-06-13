@@ -56,8 +56,6 @@ class MediaItem {
         let player, top, bottom, coordinates, isVisible;
 
         let  controls = {
-                play : function () { player.play(); console.info('playing') },
-                pause: function () { player.pause() },
                 toggleOnScroll: function () {
                     document.addEventListener("scroll", () => {
                          player       = document.querySelector(target);
@@ -85,9 +83,6 @@ class MediaItem {
         const httpRequest = new XMLHttpRequest();
               httpRequest.open ("GET", url);
 
-              httpRequest.onprogress = (e) => {
-                if(e.lengthComputable){ console.info(e.loaded + "/" + e.total)}
-              }
 
               httpRequest.onreadystatechange = () => {
                 (httpRequest.readyState === 4) && this.parse(JSON.parse(httpRequest.response))
@@ -95,7 +90,6 @@ class MediaItem {
 
               httpRequest.send('');
     }
-
 
 
 
