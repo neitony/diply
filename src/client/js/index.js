@@ -20,7 +20,7 @@ OfflinePluginRuntime.install({
 
 
 
-let elapse       = 0,                                                    runner;
+let elapse       = 0, runner;
 let clearContent = (target) => document.querySelector(target).innerHTML = "";
 
 

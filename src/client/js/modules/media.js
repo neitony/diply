@@ -56,8 +56,6 @@ class MediaItem {
         let player, top, bottom, coordinates, isVisible;
 
         let  controls = {
-                play : function () { player.play(); console.info('playing') },
-                pause: function () { player.pause() },
                 toggleOnScroll: function () {
                     document.addEventListener("scroll", () => {
                          player       = document.querySelector(target);
