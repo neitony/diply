@@ -85,9 +85,6 @@ class MediaItem {
         const httpRequest = new XMLHttpRequest();
               httpRequest.open ("GET", url);
 
-              httpRequest.onprogress = (e) => {
-                if(e.lengthComputable){ console.info(e.loaded + "/" + e.total)}
-              }
 
               httpRequest.onreadystatechange = () => {
                 (httpRequest.readyState === 4) && this.parse(JSON.parse(httpRequest.response))
@@ -95,7 +92,6 @@ class MediaItem {
 
               httpRequest.send('');
     }
-
 
 
 
