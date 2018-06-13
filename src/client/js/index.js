@@ -20,7 +20,9 @@ OfflinePluginRuntime.install({
 
 
 
-let elapse       = 0,                                                    runner;
+let elapse       = 0,
+    runner;
+
 let clearContent = (target) => document.querySelector(target).innerHTML = "";
 
 
@@ -96,12 +98,3 @@ const timer = () => {
 runner = setInterval(() => { timer() }, 25);
 document.querySelector('.video').onclick   = () => menuMap['video']();
 document.querySelector('.article').onclick = () => menuMap['article']();
-
-
-
-
-
-
-
-
-
